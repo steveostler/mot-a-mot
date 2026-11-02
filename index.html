@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mot à Mot – French Vocabulary Flashcards</title>
+  <meta name="description" content="Practise intermediate French vocabulary: see the English, type the French.">
+  <meta name="theme-color" content="#1f2d4d">
+
+  <!-- Small tricolour favicon drawn with SVG, so no image file is needed -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%231f2d4d'/%3E%3Crect x='10' width='10' height='30' fill='%23faf6ee'/%3E%3Crect x='20' width='10' height='30' fill='%23b8423a'/%3E%3C/svg%3E">
+
+  <!-- Fonts: Playfair Display for headings, Inter for everything else -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="tricolour" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo" id="logo-link">Mot à Mot</a>
+      <p class="tagline">French vocabulary, one word at a time</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ===== Screen 1: choose a deck ===== -->
+    <section id="home-view" class="view">
+      <div class="intro">
+        <h1>Choose a deck</h1>
+        <p>
+          You'll see a word in English. Type it in French.
+          Accents are forgiven, but articles count (<em>le, la, l', les</em>).
+          A card is mastered after 3 correct answers in a row.
+        </p>
+      </div>
+
+      <div id="deck-grid" class="deck-grid"></div>
+
+      <div class="home-footer">
+        <button type="button" id="reset-btn" class="link-btn">Reset all progress</button>
+      </div>
+    </section>
+
+    <!-- ===== Screen 2: practice ===== -->
+    <section id="practice-view" class="view narrow" hidden>
+      <div class="practice-top">
+        <button type="button" id="quit-btn" class="link-btn">← All decks</button>
+        <span id="counter" class="counter"></span>
+      </div>
+
+      <div class="progress-track" aria-hidden="true">
+        <div id="session-bar" class="progress-fill"></div>
+      </div>
+
+      <div class="flashcard" id="flashcard">
+        <p id="deck-label" class="card-label"></p>
+        <p id="prompt" class="prompt"></p>
+        <p id="review-tag" class="review-tag" hidden>Second chance</p>
+      </div>
+
+      <form id="answer-form" class="answer-form" autocomplete="off" novalidate>
+        <label for="answer" class="visually-hidden">Your answer in French</label>
+        <input
+          id="answer"
+          type="text"
+          placeholder="Type the French…"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          lang="fr"
+        >
+
+        <div class="accent-row" id="accent-row" aria-label="Insert accented letters"></div>
+
+        <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+
+        <div class="actions">
+          <button type="button" id="dont-know-btn" class="btn btn-secondary">I don't know</button>
+          <button type="submit" id="check-btn" class="btn btn-primary">Check</button>
+        </div>
+        <p class="hint">Press <kbd>Enter</kbd> to check, and again for the next card.</p>
+      </form>
+    </section>
+
+    <!-- ===== Screen 3: results ===== -->
+    <section id="summary-view" class="view narrow" hidden>
+      <div class="summary-card">
+        <p id="summary-deck" class="card-label"></p>
+        <h2 id="summary-title"></h2>
+        <p class="score" id="score"></p>
+        <p class="score-detail" id="score-detail"></p>
+
+        <div id="missed-wrap" class="missed-wrap">
+          <h3>Words to review</h3>
+          <ul id="missed-list" class="missed-list"></ul>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="home-btn" class="btn btn-secondary">Back to decks</button>
+          <button type="button" id="again-btn" class="btn btn-primary">Practise again</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Mot à Mot · Your progress is saved in this browser only.</p>
+    </div>
+  </footer>
+
+  <!-- decks.js must load first: script.js uses the DECKS list it defines -->
+  <script src="decks.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
